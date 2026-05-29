@@ -1,50 +1,50 @@
 {
   "ejika_shoulder": {
-    "displayText": "Ejika",
-    "syllables": ["E", "ji", "ka"]
+    "displayText": "ejika",
+    "syllables": ["e", "ji", "ka"]
   },
   "eti_ear": {
-    "displayText": "Etí",
-    "syllables": ["E", "tí"]
+    "displayText": "etí",
+    "syllables": ["e", "tí"]
   },
   "imu_nose": {
-    "displayText": "Imú",
-    "syllables": ["I", "mú"]
+    "displayText": "imú",
+    "syllables": ["i", "mú"]
   },
   "oju_eye": {
-    "displayText": "Ojú",
-    "syllables": ["O", "jú"]
+    "displayText": "ojú",
+    "syllables": ["o", "jú"]
   },
   "ori_head": {
-    "displayText": "Orí",
-    "syllables": ["O", "rí"]
+    "displayText": "orí",
+    "syllables": ["o", "rí"]
   },
   "awo_plate": {
-    "displayText": "Àwo",
-    "syllables": ["À", "wo"]
+    "displayText": "àwo",
+    "syllables": ["à", "wo"]
   },
   "ikun_stomach": {
-    "displayText": "Ìkun",
-    "syllables": ["Ì", "kun"]
+    "displayText": "ìkun",
+    "syllables": ["ì", "kun"]
   },
   "ikoko_pot": {
-    "displayText": "Ìkòkò",
-    "syllables": ["Ì", "kò", "kò"]
+    "displayText": "ìkòkò",
+    "syllables": ["ì", "kò", "kò"]
   },
   "enu_mouth": {
-    "displayText": "Ẹnu",
-    "syllables": ["Ẹ", "nu"]
+    "displayText": "ẹnu",
+    "syllables": ["ẹ", "nu"]
   },
   "ese_leg": {
-    "displayText": "Ẹsẹ",
-    "syllables": ["Ẹ", "sẹ"]
+    "displayText": "ẹsẹ",
+    "syllables": ["ẹ", "sẹ"]
   },
   "orun_neck": {
-    "displayText": "Ọrùn",
-    "syllables": ["Ọ", "rùn"]
+    "displayText": "ọrùn",
+    "syllables": ["ọ", "rùn"]
   },
   "owo_hand": {
-    "displayText": "Ọwọ",
-    "syllables": ["Ọ", "wọ"]
+    "displayText": "ọwọ",
+    "syllables": ["ọ", "wọ"]
   }
 }

@@ -49,27 +49,26 @@ def main():
 
     # 2. Extract all unique syllables required by the game
     unique_syllable_texts = set()
-    for word_id, word_info in words_data.items():
-        syllables = word_info.get('syllables', [])
-        for syllable in syllables:
-            unique_syllable_texts.add(syllable)
+    for word_info in words_data.values():
+        for syllable in word_info.get('syllables', []):
+            unique_syllable_texts.add(syllable.lower())
 
     # 3. Build the master dictionary for all defined speakers
+    # Initialize the empty master dictionary once here
     master_syllables = {}
+    
+    # Loop through each speaker only once
     for speaker in SPEAKERS:
-        # 3. Build the master dictionary
-        master_syllables = {}
-        for speaker in SPEAKERS:
-            master_syllables[speaker] = {}
-            for syllable in unique_syllable_texts:
-                # Now this returns the dictionary {audio: "...", tone: "..."}
-                master_syllables[speaker][syllable] = generate_syllable_info(syllable, speaker)
+        master_syllables[speaker] = {}
+        # Fill the dictionary for this specific speaker
+        for syllable in unique_syllable_texts:
+            master_syllables[speaker][syllable] = generate_syllable_info(syllable, speaker)
 
-    # 4. Blindly overwrite syllables.json
+    # 4. Save to syllables.json
     with open('syllables.json', 'w', encoding='utf-8') as f:
         json.dump(master_syllables, f, indent=2, ensure_ascii=False)
 
-    print(f"Success! Overwrote syllables.json with {len(unique_syllable_texts)} syllables for {len(SPEAKERS)} speaker(s).")
+    print(f"Success! Processed {len(unique_syllable_texts)} unique syllables for {len(SPEAKERS)} speakers.")
 
 if __name__ == "__main__":
     main()
