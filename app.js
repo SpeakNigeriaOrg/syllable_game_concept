@@ -76,9 +76,7 @@ async function loadGame() {
                             if (syllableInfo && syllableInfo.audio) {
                                 sessionSyllablePool.push({
                                     text: syllable,
-                                    // 3. CHANGE THIS: Use the .audio property
-                                    audioUrl: BASE_URL + syllableInfo.audio,
-                                    // 4. ADD THIS: Capture the tone so renderBank() can sort it
+                                    audio: syllableInfo.audio, // Clean mapping: handles the relative path string
                                     tone: syllableInfo.tone 
                                 });
                             } else {
@@ -215,10 +213,13 @@ function handleSyllableClick(buttonData) {
         currentPlayingAudio.currentTime = 0; 
     }
 
-    // Fix: access 'audio' instead of 'audioUrl'
+    // Now buttonData.audio perfectly matches the string "syllables/speaker1/..."
     if (buttonData.audio) {
-        currentPlayingAudio = new Audio(BASE_URL + buttonData.audio);
-        currentPlayingAudio.play().catch(() => {});
+        const absoluteUrl = BASE_URL + buttonData.audio;
+        currentPlayingAudio = new Audio(absoluteUrl);
+        currentPlayingAudio.play().catch((err) => {
+            console.error("Audio playback blocked or file missing at:", absoluteUrl, err);
+        });
     }
 
     queue.push(buttonData.text);
