@@ -42,6 +42,38 @@
     opacity: 1;
 }
 
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Semi-transparent grey/white background */
+    background: rgba(255, 255, 255, 0.7); 
+    /* Blur effect for that "pro" look */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#start-overlay button {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+#start-overlay button:hover {
+    transform: scale(1.05);
+}
+
 /* ==========================================
    TONAL SYLLABLE MATRIX
    ========================================== */
