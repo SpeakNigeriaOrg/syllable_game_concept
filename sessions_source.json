@@ -1,6 +1,27 @@
 [
   {
-    "levelId": "Level 1: Body Parts (Ẹ̀yà Ara)",
+    "levelId": "Level 1: Animals (Ẹranko)",
+    "words": [
+      "aja_dog",
+      "alangba_lizard",
+      "pepeye_duck",
+      "eye_bird",
+      "ejo_snake",
+      "esin_horse"
+    ]
+  },
+    {
+    "levelId": "Level 2: The Home & Objects (Nǹkan Ilé)",
+    "words": [
+      "baluwe_bathroom",
+      "ibusun_bed",
+      "ilekun_door",
+      "aso_cloth",
+      "ose_soap"
+    ]
+  },
+  {
+    "levelId": "Level 3: Body Parts (Ẹ̀yà Ara)",
     "words": [
       "ori_head",
       "oju_eye",
@@ -15,10 +36,65 @@
     ]
   },
   {
-    "levelId": "Level 2: Household Items",
+    "levelId": "Level 4: Body Parts 2 (Ẹ̀yà Ara)",
     "words": [
-      "awo_plate",
-      "ikoko_pot"
+      "idodo_navel",
+      "itan_thigh",
+      "aya_chest",
+      "ete_lip",
+      "eyin_back",
+      "eekanna_nail"
+    ]
+  },
+
+  {
+    "levelId": "Level 5: Action Words (Ọ̀rọ̀ Ìṣe)",
+    "words": [
+      "dide_stand",
+      "jeun_eat",
+      "lo_go",
+      "ra_crawl",
+      "sare_run",
+      "wa_come",
+      "irin_walk"
+    ]
+  },
+  {
+    "levelId": "Level 6: Nature & Environment (Àyíká)",
+    "words": [
+      "ewe_leaf",
+      "igbo_forest",
+      "eye_bird",
+      "ejo_snake",
+      "ojo_day"
+    ]
+  },
+  {
+    "levelId": "Level 7: Everyday Life & Food (Ìgbésí Ayé)",
+    "words": [
+      "pele_sorry",
+      "e_joo_please",
+      "jeun_eat",
+      "ewa_beans",
+      "ewa_beauty"
+    ]
+  },
+  {
+    "levelId": "Level 8: Time & Months (Àkókò àti Oṣù)",
+    "words": [
+      "ojo_day",
+      "seere_january",
+      "erele_february",
+      "erena_march",
+      "igbe_april",
+      "ebibi_may",
+      "okudu_june",
+      "agemo_july",
+      "ogun_august",
+      "owewe_september",
+      "owawa_october",
+      "beelu_november",
+      "ope_december"
     ]
   }
 ]

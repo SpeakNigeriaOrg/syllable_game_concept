@@ -1,36 +1,49 @@
 import json
+import unicodedata
 
 # --- CONFIGURATION ---
-# Define all your speakers here. The script will generate 
-# the full required syllable list for every speaker in this array.
 SPEAKERS = ["speaker1", "speaker2"]
 # ---------------------
 
 def generate_syllable_info(syllable, speaker):
+    # Normalize to ensure compound diacritics are consistently grouped
+    syllable = unicodedata.normalize('NFC', syllable.lower())
+    
     # 1. Detect the tone
     tone = "mid" # Default
-    if any(c in syllable.lower() for c in ['á', 'é', 'ẹ́', 'í', 'ó', 'ọ́', 'ú', 'ń']):
+    if any(c in syllable for c in ['á', 'é', 'ẹ́', 'í', 'ó', 'ọ́', 'ú', 'ń']):
         tone = "high"
         suffix = "_high"
-    elif any(c in syllable.lower() for c in ['à', 'è', 'ẹ̀', 'ì', 'ò', 'ọ̀', 'ù', 'ǹ']):
+    elif any(c in syllable for c in ['à', 'è', 'ẹ̀', 'ì', 'ò', 'ọ̀', 'ù', 'ǹ']):
         tone = "low"
         suffix = "_low"
     else:
         suffix = ""
 
-    # 2. Map characters
+    # 2. Map characters cleanly (using sh, eh, oh for underdots)
     base_map = {
+        # Regular tones
         'á': 'a', 'à': 'a',
         'é': 'e', 'è': 'e',
-        'ẹ́': 'e_sub', 'ẹ̀': 'e_sub', 'ẹ': 'e_sub',
         'í': 'i', 'ì': 'i',
         'ó': 'o', 'ò': 'o',
-        'ọ́': 'o_sub', 'ọ̀': 'o_sub', 'ọ': 'o_sub',
         'ú': 'u', 'ù': 'u',
-        'ṣ': 's_sub'
+        'ń': 'n', 'ǹ': 'n', # <-- Fixed: Added missing 'n' tones
+        
+        # Underdot combinations mapped to clean digraphs
+        'ẹ́': 'eh', 'ẹ̀': 'eh', 'ẹ': 'eh',
+        'ọ́': 'oh', 'ọ̀': 'oh', 'ọ': 'oh',
+        'ṣ': 'sh'
     }
     
-    safe_name = "".join([base_map.get(c, c) for c in syllable.lower()])
+    # 3. Safely replace characters
+    safe_name = syllable
+    # Sort keys by length (descending) to catch compound characters first
+    for key in sorted(base_map.keys(), key=len, reverse=True):
+        safe_name = safe_name.replace(key, base_map[key])
+    
+    # Strip any remaining invisible combining characters just to be bulletproof
+    safe_name = "".join(c for c in safe_name if not unicodedata.combining(c))
     
     # Return both the path AND the tone label
     return {
@@ -39,7 +52,6 @@ def generate_syllable_info(syllable, speaker):
     }
 
 def main():
-    # 1. Read the existing words.json file
     try:
         with open('words.json', 'r', encoding='utf-8') as f:
             words_data = json.load(f)
@@ -47,24 +59,18 @@ def main():
         print("Error: words.json not found in the current directory.")
         return
 
-    # 2. Extract all unique syllables required by the game
     unique_syllable_texts = set()
     for word_info in words_data.values():
         for syllable in word_info.get('syllables', []):
             unique_syllable_texts.add(syllable.lower())
 
-    # 3. Build the master dictionary for all defined speakers
-    # Initialize the empty master dictionary once here
     master_syllables = {}
     
-    # Loop through each speaker only once
     for speaker in SPEAKERS:
         master_syllables[speaker] = {}
-        # Fill the dictionary for this specific speaker
         for syllable in unique_syllable_texts:
             master_syllables[speaker][syllable] = generate_syllable_info(syllable, speaker)
 
-    # 4. Save to syllables.json
     with open('syllables.json', 'w', encoding='utf-8') as f:
         json.dump(master_syllables, f, indent=2, ensure_ascii=False)
 

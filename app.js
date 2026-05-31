@@ -56,7 +56,7 @@ async function loadGame() {
                     
                     // Construct standard paths using Convention Over Configuration
                     const dynamicAudioUrl = `${BASE_URL}words/${CURRENT_SPEAKER}/${wordId}.wav`;
-                    const dynamicImageUrl = `${BASE_URL}images/${CURRENT_IMAGE_STYLE}/${wordId}.jpg`;
+                    const dynamicImageUrl = `${BASE_URL}images/${CURRENT_IMAGE_STYLE}/${wordId}.png`;
 
                     sessionWords.push({
                         id: wordId,
@@ -144,7 +144,7 @@ function loadWord(wordIndex) {
     const imgElement = document.getElementById('prompt-image');
     imgElement.onerror = function() {
         this.onerror = null; 
-        this.src = 'images/placeholder.jpg'; 
+        this.src = 'images/placeholder.png'; 
     };
     imgElement.src = currentWord.imageUrl;
     

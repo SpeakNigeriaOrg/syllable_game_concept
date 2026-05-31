@@ -46,7 +46,7 @@ def generate_sessions():
             is_style_valid = True
             for word_id in level["words"]:
                 # Pointing to data/images/
-                expected_image = os.path.join(MEDIA_DIR, "images", style, f"{word_id}.jpg")
+                expected_image = os.path.join(MEDIA_DIR, "images", style, f"{word_id}.png")
                 if not os.path.exists(expected_image):
                     is_style_valid = False
                     break

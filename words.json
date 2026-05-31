@@ -46,5 +46,181 @@
   "owo_hand": {
     "displayText": "ọwọ",
     "syllables": ["ọ", "wọ"]
+  },
+  "agemo_july": {
+    "displayText": "Agẹmọ",
+    "syllables": ["A", "gẹ", "mọ"]
+  },
+  "aja_dog": {
+    "displayText": "ajá",
+    "syllables": ["a", "já"]
+  },
+  "alangba_lizard": {
+    "displayText": "aláǹgbá",
+    "syllables": ["a", "lá", "ǹ", "gbá"]
+  },
+  "baluwe_bathroom": {
+    "displayText": "balùwẹ̀",
+    "syllables": ["ba", "lù", "wẹ̀"]
+  },
+  "beelu_november": {
+    "displayText": "Beélú",
+    "syllables": ["Be", "é", "lú"]
+  },
+  "dide_stand": {
+    "displayText": "dìde",
+    "syllables": ["dì", "de"]
+  },
+  "ewe_leaf": {
+    "displayText": "ewé",
+    "syllables": ["e", "wé"]
+  },
+  "ibusun_bed": {
+    "displayText": "ibùsùn",
+    "syllables": ["i", "bù", "sùn"]
+  },
+  "idodo_navel": {
+    "displayText": "idodo",
+    "syllables": ["i", "do", "do"]
+  },
+  "igbe_april": {
+    "displayText": "Igbe",
+    "syllables": ["I", "gbe"]
+  },
+  "igbo_forest": {
+    "displayText": "igbó",
+    "syllables": ["i", "gbó"]
+  },
+  "irin_iron": {
+    "displayText": "irin",
+    "syllables": ["i", "rin"]
+  },
+  "itan_thigh": {
+    "displayText": "itan",
+    "syllables": ["i", "tan"]
+  },
+  "jeun_eat": {
+    "displayText": "jẹun",
+    "syllables": ["jẹ", "un"]
+  },
+  "lo_go": {
+    "displayText": "lọ",
+    "syllables": ["lọ"]
+  },
+  "okudu_june": {
+    "displayText": "Okúdù",
+    "syllables": ["o", "kú", "dù"]
+  },
+  "pele_sorry": {
+    "displayText": "pẹ̀lẹ́",
+    "syllables": ["pẹ̀", "lẹ́"]
+  },
+  "pepeye_duck": {
+    "displayText": "pẹ́pẹ́yẹ",
+    "syllables": ["pẹ́", "pẹ́", "yẹ"]
+  },
+  "ra_crawl": {
+    "displayText": "rá",
+    "syllables": ["rá"]
+  },
+  "sare_run": {
+    "displayText": "sáré",
+    "syllables": ["sá", "ré"]
+  },
+  "wa_come": {
+    "displayText": "wá",
+    "syllables": ["wá"]
+  },
+  "aya_chest": {
+    "displayText": "àyà",
+    "syllables": ["à", "yà"]
+  },
+  "aso_cloth": {
+    "displayText": "àṣọ",
+    "syllables": ["à", "ṣọ"]
+  },
+  "ebibi_may": {
+    "displayText": "Èbìbí",
+    "syllables": ["è", "bì", "bí"]
+  },
+  "erele_february": {
+    "displayText": "Èrèlé",
+    "syllables": ["è", "rè", "lé"]
+  },
+  "ete_lip": {
+    "displayText": "ètè",
+    "syllables": ["è", "tè"]
+  },
+  "ewa_beans": {
+    "displayText": "èwà",
+    "syllables": ["è", "wà"]
+  },
+  "ilekun_door": {
+    "displayText": "ìlẹ̀kùn",
+    "syllables": ["ì", "lẹ̀", "kùn"]
+  },
+  "irin_walk": {
+    "displayText": "ìrìn",
+    "syllables": ["ì", "rìn"]
+  },
+  "ogun_august": {
+    "displayText": "Ògún",
+    "syllables": ["ò", "gún"]
+  },
+  "seere_january": {
+    "displayText": "Ṣẹẹrẹ",
+    "syllables": ["ṣẹ", "ẹ", "rẹ"]
+  },
+  "e_joo_please": {
+    "displayText": "ẹ jọ̀ọ́",
+    "syllables": ["ẹ", "jọ̀", "ọ́"]
+  },
+  "erena_march": {
+    "displayText": "Ẹrénà",
+    "syllables": ["ẹ", "ré", "nà"]
+  },
+  "ewa_beauty": {
+    "displayText": "ẹwà",
+    "syllables": ["ẹ", "wà"]
+  },
+  "eye_bird": {
+    "displayText": "ẹyẹ",
+    "syllables": ["ẹ", "yẹ"]
+  },
+    "ejo_snake": {
+    "displayText": "ejò",
+    "syllables": ["e", "jò"]
+  },
+  "eyin_back": {
+    "displayText": "ẹ̀yìn",
+    "syllables": ["ẹ̀", "yìn"]
+  },
+  "esin_horse": {
+    "displayText": "ẹṣin",
+    "syllables": ["ẹ", "ṣin"]
+  },
+  "eekanna_nail": {
+    "displayText": "ẹẹkànnà",
+    "syllables": ["ẹ", "ẹ", "kàn", "nà"]
+  },
+  "ojo_day": {
+    "displayText": "ọjọ́",
+    "syllables": ["ọ", "jọ́"]
+  },
+  "owewe_september": {
+    "displayText": "Ọwẹ́wẹ",
+    "syllables": ["ọ", "wẹ́", "wẹ"]
+  },
+  "ope_december": {
+    "displayText": "Ọ̀pẹ",
+    "syllables": ["ọ̀", "pẹ"]
+  },
+  "owawa_october": {
+    "displayText": "Ọ̀wàwà",
+    "syllables": ["ọ̀", "wà", "wà"]
+  },
+  "ose_soap": {
+    "displayText": "ọ́ṣẹ́",
+    "syllables": ["ọ́", "ṣẹ́"]
   }
 }
