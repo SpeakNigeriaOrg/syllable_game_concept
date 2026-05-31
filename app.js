@@ -29,7 +29,7 @@ function startGame() {
     // 1. Hide the overlay
     document.getElementById('start-overlay').style.display = 'none';
     
-    // 2. Now it is safe to load and play the first word
+    // 2. Now it is safe to load the first word
     loadWord(0); 
 }
 
@@ -49,44 +49,46 @@ async function loadGame() {
             let sessionWords = [];
             let sessionSyllablePool = [];
 
-            // 1. ADD THIS: Automatically determine the correct speaker for this specific level
-            let levelSpeaker = CURRENT_SPEAKER; // Default fallback
+            // Automatically determine the correct speaker for this specific level
+            let levelSpeaker = CURRENT_SPEAKER; 
             if (session.validSpeakers && session.validSpeakers.length > 0) {
-                levelSpeaker = session.validSpeakers[0]; // Grabs "speaker2" from sessions.json
+                levelSpeaker = session.validSpeakers[0]; 
             }
             
             session.words.forEach(wordId => {
                 const wordData = dictionaryWords[wordId];
                 
                 if (wordData) {
-                    
-                    // Use levelSpeaker instead of CURRENT_SPEAKER for the full word audio
                     const dynamicAudioUrl = `${BASE_URL}words/${levelSpeaker}/${wordId}.wav`;
                     const dynamicImageUrl = `${BASE_URL}images/${CURRENT_IMAGE_STYLE}/${wordId}.png`;
+
+                    // ADDITION: Pre-calculate the tones for this word to use in the hint
+                    const targetTones = wordData.syllables.map(syllable => {
+                        const info = dictionarySyllables[levelSpeaker]?.[syllable];
+                        return info ? info.tone : "mid"; // fallback to mid if missing
+                    });
 
                     sessionWords.push({
                         id: wordId,
                         targetWord: wordData.displayText, 
                         targetSyllables: wordData.syllables,
+                        targetTones: targetTones, // Save the mapped tones array
                         fullAudioUrl: dynamicAudioUrl, 
                         imageUrl: dynamicImageUrl
                     });
                                         
                     wordData.syllables.forEach(syllable => {
                         if (!sessionSyllablePool.some(s => s.text === syllable)) {
+                            const syllableInfo = dictionarySyllables[levelSpeaker]?.[syllable];
                             
-                            // 1. CHANGE THIS: Fetch the object, not the string
-                            const syllableInfo = dictionarySyllables[CURRENT_SPEAKER]?.[syllable];
-                            
-                            // 2. CHANGE THIS: Check if the object exists
                             if (syllableInfo && syllableInfo.audio) {
                                 sessionSyllablePool.push({
                                     text: syllable,
-                                    audio: syllableInfo.audio, // Clean mapping: handles the relative path string
+                                    audio: syllableInfo.audio, 
                                     tone: syllableInfo.tone 
                                 });
                             } else {
-                                console.warn(`[Missing Asset] Syllable "${syllable}" missing for ${CURRENT_SPEAKER}`);
+                                console.warn(`[Missing Asset] Syllable "${syllable}" missing for ${levelSpeaker}`);
                             }
                         }
                     });
@@ -146,7 +148,6 @@ function loadWord(wordIndex) {
     maxSlots = currentWord.targetSyllables.length;
     queue = []; 
     
-    // Set image with a basic 404 fallback to keep UI clean during testing
     const imgElement = document.getElementById('prompt-image');
     imgElement.onerror = function() {
         this.onerror = null; 
@@ -158,7 +159,16 @@ function loadWord(wordIndex) {
     renderQueue();
     isTransitioning = false; 
 
-    playFullWordAudio();
+    // CHANGE: Removed playFullWordAudio() from here so it doesn't auto-play
+}
+
+// ADDITION: New function to show the tone hint
+function showToneHint() {
+    if (!currentWord || !currentWord.targetTones || isTransitioning) return;
+    
+    // Joins the array ["mid", "mid", "high"] into "mid mid high"
+    const hintString = currentWord.targetTones.join(" ");
+    document.getElementById('feedback-message').innerText = `Tone Hint: ${hintString}`;
 }
 
 function playFullWordAudio() {
@@ -192,7 +202,6 @@ function renderBank() {
         btn.innerText = buttonData.text;
         btn.onclick = () => handleSyllableClick(buttonData);
         
-        // Data-driven: The tone is already defined in the data
         const tone = buttonData.tone || 'mid'; 
         btn.className = `btn-${tone}`;
         rows[tone].appendChild(btn);
@@ -219,7 +228,6 @@ function handleSyllableClick(buttonData) {
         currentPlayingAudio.currentTime = 0; 
     }
 
-    // Now buttonData.audio perfectly matches the string "syllables/speaker1/..."
     if (buttonData.audio) {
         const absoluteUrl = BASE_URL + buttonData.audio;
         currentPlayingAudio = new Audio(absoluteUrl);
