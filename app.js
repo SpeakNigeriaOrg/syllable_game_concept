@@ -243,6 +243,23 @@ function handleSyllableClick(buttonData) {
     checkWinCondition();
 }
 
+// ADDITION: Allow the user to skip a difficult word
+function skipWord() {
+    if (isTransitioning) return; // Prevent spam-clicking
+    
+    isTransitioning = true;
+    
+    const feedbackEl = document.getElementById('feedback-message');
+    feedbackEl.innerText = "Skipping word...";
+    feedbackEl.style.color = "#c62828"; // Make the text red to indicate a skip
+    
+    // Wait a brief moment so they can read the message, then move on
+    setTimeout(() => {
+        feedbackEl.style.color = ""; // Reset text color back to default
+        moveToNextWord();
+    }, 800);
+}
+
 function checkWinCondition() {
     const isMatch = queue.length === maxSlots && 
                     queue.every((val, index) => val === currentWord.targetSyllables[index]);
@@ -257,9 +274,24 @@ function checkWinCondition() {
 function playWinningSequence() {
     setTimeout(() => {
         const fullWordAudio = new Audio(currentWord.fullAudioUrl);
+        let hasMovedOn = false; // Flag to prevent double-firing
+
+        // This function handles the transition
+        const triggerNext = () => {
+            if (!hasMovedOn) {
+                hasMovedOn = true;
+                setTimeout(moveToNextWord, 1000);
+            }
+        };
+
+        // Standard triggers
+        fullWordAudio.onended = triggerNext;
+        fullWordAudio.play().catch(triggerNext);
+
+        // FAILSAFE: If the OS freezes the audio (e.g., WhatsApp call), 
+        // force the game to move on after 3.5 seconds anyway.
+        setTimeout(triggerNext, 3500); 
         
-        fullWordAudio.onended = () => setTimeout(moveToNextWord, 1000);
-        fullWordAudio.play().catch(() => setTimeout(moveToNextWord, 1000));
     }, 400); 
 }
 
