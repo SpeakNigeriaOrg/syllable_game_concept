@@ -48,6 +48,12 @@ async function loadGame() {
         gameData = sessions.map(session => {
             let sessionWords = [];
             let sessionSyllablePool = [];
+
+            // 1. ADD THIS: Automatically determine the correct speaker for this specific level
+            let levelSpeaker = CURRENT_SPEAKER; // Default fallback
+            if (session.validSpeakers && session.validSpeakers.length > 0) {
+                levelSpeaker = session.validSpeakers[0]; // Grabs "speaker2" from sessions.json
+            }
             
             session.words.forEach(wordId => {
                 const wordData = dictionaryWords[wordId];
