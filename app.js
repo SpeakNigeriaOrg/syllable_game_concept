@@ -60,8 +60,8 @@ async function loadGame() {
                 
                 if (wordData) {
                     
-                    // Construct standard paths using Convention Over Configuration
-                    const dynamicAudioUrl = `${BASE_URL}words/${CURRENT_SPEAKER}/${wordId}.wav`;
+                    // Use levelSpeaker instead of CURRENT_SPEAKER for the full word audio
+                    const dynamicAudioUrl = `${BASE_URL}words/${levelSpeaker}/${wordId}.wav`;
                     const dynamicImageUrl = `${BASE_URL}images/${CURRENT_IMAGE_STYLE}/${wordId}.png`;
 
                     sessionWords.push({
