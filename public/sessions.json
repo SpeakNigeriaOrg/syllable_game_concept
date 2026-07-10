@@ -1,6 +1,10 @@
 [
   {
     "levelId": "Level 1: Animals (Ẹranko)",
+    "validSpeakers": [],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "aja_dog",
       "alangba_lizard",
@@ -10,8 +14,14 @@
       "esin_horse"
     ]
   },
-    {
+  {
     "levelId": "Level 2: The Home & Objects (Nǹkan Ilé)",
+    "validSpeakers": [
+      "speaker2"
+    ],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "baluwe_bathroom",
       "ibusun_bed",
@@ -22,6 +32,10 @@
   },
   {
     "levelId": "Level 3: Body Parts (Ẹ̀yà Ara)",
+    "validSpeakers": [],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "ori_head",
       "oju_eye",
@@ -37,6 +51,12 @@
   },
   {
     "levelId": "Level 4: Body Parts 2 (Ẹ̀yà Ara)",
+    "validSpeakers": [
+      "speaker2"
+    ],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "idodo_navel",
       "itan_thigh",
@@ -46,9 +66,14 @@
       "eekanna_nail"
     ]
   },
-
   {
     "levelId": "Level 5: Action Words (Ọ̀rọ̀ Ìṣe)",
+    "validSpeakers": [
+      "speaker2"
+    ],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "dide_stand",
       "jeun_eat",
@@ -61,6 +86,12 @@
   },
   {
     "levelId": "Level 6: Nature & Environment (Àyíká)",
+    "validSpeakers": [
+      "speaker2"
+    ],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "ewe_leaf",
       "igbo_forest",
@@ -71,6 +102,10 @@
   },
   {
     "levelId": "Level 7: Everyday Life & Food (Ìgbésí Ayé)",
+    "validSpeakers": [],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "pele_sorry",
       "e_joo_please",
@@ -81,6 +116,12 @@
   },
   {
     "levelId": "Level 8: Time & Months (Àkókò àti Oṣù)",
+    "validSpeakers": [
+      "speaker2"
+    ],
+    "validStyles": [
+      "cartoon"
+    ],
     "words": [
       "ojo_day",
       "seere_january",

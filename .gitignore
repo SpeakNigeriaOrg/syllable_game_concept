@@ -4,5 +4,5 @@
 !.dev.vars.example
 .env*
 !.env.example
-misc/
-data/
+
+.DS_Store

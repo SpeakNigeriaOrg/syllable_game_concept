@@ -36,7 +36,7 @@ function startGame() {
 async function loadGame() {
     try {
         const [wordsResponse, syllablesResponse, sessionsResponse] = await Promise.all([
-            fetch('words.json'),
+            fetch('vocab.json'),
             fetch('syllables.json'),
             fetch('sessions.json')
         ]);
