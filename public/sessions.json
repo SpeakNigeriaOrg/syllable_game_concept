@@ -238,71 +238,10 @@
     ],
     "words": [
       "aso_cloth",
-      "digi_mirror",
       "ese_leg",
-      "ile_home",
-      "ina_fire",
-      "kasu_cashew",
-      "moto_automobile",
-      "adiye_chicken",
-      "buredi_bread",
-      "ibusun_bed"
-    ]
-  },
-  {
-    "levelId": "Syllable Practice 2 — speaker3",
-    "category": "syllable_reinforcement",
-    "validSpeakers": [
-      "speaker3"
-    ],
-    "words": [
-      "oba_king",
       "ose_soap",
-      "obe_knife",
-      "ogbon_wisdom",
-      "oja_market",
-      "osan_orange",
-      "ogun_twenty",
-      "goomu_gum",
-      "ogede_banana",
-      "ookan_one"
-    ]
-  },
-  {
-    "levelId": "Syllable Practice 3 — speaker3",
-    "category": "syllable_reinforcement",
-    "validSpeakers": [
-      "speaker3"
-    ],
-    "words": [
-      "pako_timber",
-      "sibi_spoon",
-      "osupa_moon",
-      "okuta_stone",
-      "redio_radio",
-      "agunfon_giraffe",
-      "esinsin_fly",
-      "guafa_guava",
-      "ibepe_papaya",
-      "alubosa_onion"
-    ]
-  },
-  {
-    "levelId": "Syllable Practice 4 — speaker3",
-    "category": "syllable_reinforcement",
-    "validSpeakers": [
-      "speaker3"
-    ],
-    "words": [
-      "ifoyin_toothbrush",
-      "ikoko_pot",
-      "inura_towel",
-      "irawo_star",
-      "jokoo_sit",
-      "kalamu_pen",
-      "maluu_cow",
-      "oduduwa_oduduwa",
-      "olongbo_cat"
+      "ibusun_bed",
+      "ikoko_pot"
     ]
   },
   {
@@ -363,34 +302,20 @@
     ]
   },
   {
-    "levelId": "Tone Pattern (mid-high) — speaker3",
-    "category": "tone_pattern",
-    "validSpeakers": [
-      "speaker3"
-    ],
-    "words": [
-      "ile_home",
-      "ina_fire",
-      "kasu_cashew",
-      "ogbon_wisdom",
-      "ogun_twenty"
-    ]
-  },
-  {
     "levelId": "Endless Practice 1 — speaker1",
     "category": "endless_practice",
     "validSpeakers": [
       "speaker1"
     ],
     "words": [
-      "ikun_stomach",
-      "ejika_shoulder",
-      "oju_eye",
-      "owo_hand",
-      "ori_head",
       "awo_plate",
+      "ori_head",
+      "ikun_stomach",
+      "orun_neck",
+      "ikoko_pot",
+      "ejika_shoulder",
       "enu_mouth",
-      "orun_neck"
+      "owo_hand"
     ]
   },
   {
@@ -400,14 +325,14 @@
       "speaker1"
     ],
     "words": [
-      "oju_eye",
-      "ikun_stomach",
-      "imu_nose",
-      "enu_mouth",
-      "eti_ear",
-      "ejika_shoulder",
+      "owo_hand",
       "ikoko_pot",
-      "awo_plate"
+      "orun_neck",
+      "awo_plate",
+      "imu_nose",
+      "ejika_shoulder",
+      "eti_ear",
+      "ori_head"
     ]
   },
   {
@@ -418,13 +343,13 @@
     ],
     "words": [
       "imu_nose",
-      "ikun_stomach",
-      "ejika_shoulder",
-      "oju_eye",
-      "enu_mouth",
+      "eti_ear",
+      "ori_head",
       "ikoko_pot",
-      "orun_neck",
-      "awo_plate"
+      "awo_plate",
+      "ikun_stomach",
+      "owo_hand",
+      "oju_eye"
     ]
   },
   {
@@ -434,14 +359,14 @@
       "speaker2"
     ],
     "words": [
-      "jeun_eat",
-      "aja_dog",
-      "oju_eye",
-      "dide_stand",
-      "ejo_snake",
-      "ilekun_door",
-      "pepeye_duck",
-      "owawa_october"
+      "irin_walk",
+      "beelu_november",
+      "baluwe_bathroom",
+      "igbe_april",
+      "owawa_october",
+      "idodo_navel",
+      "sare_run",
+      "ewa_beans"
     ]
   },
   {
@@ -451,14 +376,14 @@
       "speaker2"
     ],
     "words": [
-      "agemo_july",
-      "owawa_october",
-      "ejo_snake",
-      "ete_lip",
+      "ogun_august",
+      "oju_eye",
       "ope_december",
-      "aso_cloth",
-      "okudu_june",
-      "ewa_beauty"
+      "ewe_leaf",
+      "ra_crawl",
+      "ewa_beans",
+      "igbo_forest",
+      "aja_dog"
     ]
   },
   {
@@ -468,14 +393,14 @@
       "speaker2"
     ],
     "words": [
-      "pele_sorry",
-      "ete_lip",
-      "okudu_june",
+      "seere_january",
+      "irin_iron",
       "igbe_april",
-      "ojo_day",
-      "ibusun_bed",
-      "aja_dog",
-      "sare_run"
+      "idodo_navel",
+      "igbo_forest",
+      "owewe_september",
+      "okudu_june",
+      "agemo_july"
     ]
   },
   {
@@ -485,14 +410,11 @@
       "speaker3"
     ],
     "words": [
-      "kalamu_pen",
-      "adiye_chicken",
-      "ose_soap",
-      "osan_orange",
-      "buredi_bread",
+      "aso_cloth",
+      "ikoko_pot",
+      "ibusun_bed",
       "ese_leg",
-      "esinsin_fly",
-      "agunfon_giraffe"
+      "ose_soap"
     ]
   },
   {
@@ -502,14 +424,11 @@
       "speaker3"
     ],
     "words": [
-      "ogede_banana",
-      "ogun_twenty",
-      "esinsin_fly",
-      "pako_timber",
-      "irawo_star",
-      "ogbon_wisdom",
+      "ese_leg",
+      "aso_cloth",
       "ibusun_bed",
-      "redio_radio"
+      "ikoko_pot",
+      "ose_soap"
     ]
   },
   {
@@ -519,14 +438,11 @@
       "speaker3"
     ],
     "words": [
-      "ina_fire",
-      "olongbo_cat",
-      "jokoo_sit",
-      "oja_market",
-      "ifoyin_toothbrush",
-      "okuta_stone",
-      "ile_home",
-      "adiye_chicken"
+      "ose_soap",
+      "ese_leg",
+      "ibusun_bed",
+      "aso_cloth",
+      "ikoko_pot"
     ]
   }
 ]

@@ -82,27 +82,28 @@ async function loadGame() {
             session.words.forEach(wordId => {
                 const wordData = dictionaryWords[wordId];
                 
-                if (wordData) {
+                // publishToR2.mjs/exportGameContent.mjs now hard-gate every
+                // word in sessions.json on having a real image (same as
+                // audio coverage) - a placeholder graphic standing in for
+                // missing art is fabricated content, not an acceptable
+                // degrade. This check is defense-in-depth only: it should
+                // never actually trigger against correctly-generated
+                // content, but if it ever does (stale/hand-edited
+                // sessions.json), skip the word entirely rather than
+                // silently showing a placeholder.
+                const imageStyles = wordData?.imageStyles || [];
+                if (wordData && imageStyles.length === 0) {
+                    console.error(`[Missing Image] "${wordId}" has no labeled image - excluding from this level (sessions.json should already guarantee this never happens; check its generation).`);
+                }
+
+                if (wordData && imageStyles.length > 0) {
                     const dynamicAudioUrl = `${BASE_URL}words/${levelSpeaker}/${wordId}.wav`;
-                    // Not every word has art in every style yet (vocab.json's
-                    // imageStyles lists which ones actually exist for this
-                    // word - exportGameContent.mjs, decision 7). Prefer the
-                    // player's chosen style if covered; otherwise fall back
-                    // to whichever style IS covered rather than requesting a
-                    // path guaranteed to 404. If no style has art at all,
-                    // request the placeholder directly rather than relying
-                    // solely on onerror for the always-missing case.
-                    const imageStyles = wordData.imageStyles || [];
+                    // Prefer the player's chosen style if covered; otherwise
+                    // fall back to whichever style IS covered.
                     const chosenStyle = imageStyles.includes(CURRENT_IMAGE_STYLE)
                         ? CURRENT_IMAGE_STYLE
                         : imageStyles[0];
-                    // placeholder.png ships same-origin with this page (it's
-                    // not in the bucket - see index.html's asset layout), so
-                    // it's deliberately NOT prefixed with BASE_URL even
-                    // though real word images are.
-                    const dynamicImageUrl = chosenStyle
-                        ? `${BASE_URL}images/${chosenStyle}/${wordId}.png`
-                        : `images/placeholder.png`;
+                    const dynamicImageUrl = `${BASE_URL}images/${chosenStyle}/${wordId}.png`;
 
                     // ADDITION: Pre-calculate the tones for this word to use in the hint
                     const targetTones = wordData.syllables.map(syllable => {
