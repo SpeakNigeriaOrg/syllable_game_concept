@@ -7,7 +7,9 @@
       "yẹ"
     ],
     "definition": "chicken",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "agemo_july": {
     "displayText": "Agẹmọ",
@@ -64,7 +66,9 @@
       "sà"
     ],
     "definition": "onion",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "aso_cloth": {
     "displayText": "aṣọ",
@@ -131,7 +135,9 @@
       "dì"
     ],
     "definition": "bread",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "dide_stand": {
     "displayText": "dìde",
@@ -151,7 +157,9 @@
       "gí"
     ],
     "definition": "mirror, glass",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ebibi_may": {
     "displayText": "Èbìbí",
@@ -278,7 +286,9 @@
       "ṣin"
     ],
     "definition": "housefly, fly (insect)",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ete_lip": {
     "displayText": "ètè",
@@ -373,7 +383,9 @@
       "mù"
     ],
     "definition": null,
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "guafa_guava": {
     "displayText": "gúáfà",
@@ -383,7 +395,9 @@
       "fà"
     ],
     "definition": null,
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ibepe_papaya": {
     "displayText": "ìbẹ́pẹ",
@@ -393,7 +407,9 @@
       "pẹ"
     ],
     "definition": "papaya",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ibusun_bed": {
     "displayText": "ibùsùn",
@@ -427,7 +443,9 @@
       "yín"
     ],
     "definition": null,
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "igbe_april": {
     "displayText": "Igbe",
@@ -481,7 +499,9 @@
       "lé"
     ],
     "definition": "home, house, abode",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ilekun_door": {
     "displayText": "ìlẹ̀kùn",
@@ -596,7 +616,9 @@
       "ó"
     ],
     "definition": "to sit (down)",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "kalamu_pen": {
     "displayText": "kálàmú",
@@ -615,7 +637,9 @@
       "ṣú"
     ],
     "definition": null,
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "lo_go": {
     "displayText": "lọ",
@@ -635,7 +659,9 @@
       "ù"
     ],
     "definition": "cow, ox, cattle; (in particular) zebu cow",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "moto_automobile": {
     "displayText": "mọ́tò",
@@ -644,7 +670,9 @@
       "tò"
     ],
     "definition": "car",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "oba_king": {
     "displayText": "ọba",
@@ -653,7 +681,9 @@
       "ba"
     ],
     "definition": "king, queen, monarch",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "obe_knife": {
     "displayText": "ọ̀bẹ",
@@ -692,7 +722,9 @@
       "dè"
     ],
     "definition": "banana, plantain",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ogun_august": {
     "displayText": "Ògún",
@@ -765,7 +797,9 @@
       "ta"
     ],
     "definition": "rock, stone",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "olongbo_cat": {
     "displayText": "olóńgbò",
@@ -776,7 +810,9 @@
       "gbò"
     ],
     "definition": "cat",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ookan_one": {
     "displayText": "oókan",
@@ -786,7 +822,9 @@
       "kan"
     ],
     "definition": "one (used when counting)",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ope_december": {
     "displayText": "Ọ̀pẹ",
@@ -828,7 +866,9 @@
       "sàn"
     ],
     "definition": "orange (fruit)",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "ose_soap": {
     "displayText": "ọṣẹ",
@@ -893,7 +933,9 @@
       "kó"
     ],
     "definition": "wood, plank, wooden board",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "pele_sorry": {
     "displayText": "pẹ̀lẹ́",
@@ -936,7 +978,9 @@
       "ò"
     ],
     "definition": null,
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "sare_run": {
     "displayText": "sáré",
@@ -968,7 +1012,9 @@
       "bí"
     ],
     "definition": "spoon",
-    "imageStyles": []
+    "imageStyles": [
+      "cartoon"
+    ]
   },
   "wa_come": {
     "displayText": "wá",

@@ -238,10 +238,51 @@
     ],
     "words": [
       "aso_cloth",
+      "digi_mirror",
       "ese_leg",
+      "ile_home",
+      "kasu_cashew",
+      "moto_automobile",
+      "oba_king",
+      "adiye_chicken",
+      "buredi_bread",
+      "ibusun_bed"
+    ]
+  },
+  {
+    "levelId": "Syllable Practice 2 — speaker3",
+    "category": "syllable_reinforcement",
+    "validSpeakers": [
+      "speaker3"
+    ],
+    "words": [
+      "osan_orange",
       "ose_soap",
-      "ibusun_bed",
-      "ikoko_pot"
+      "pako_timber",
+      "sibi_spoon",
+      "esinsin_fly",
+      "goomu_gum",
+      "ogede_banana",
+      "guafa_guava",
+      "ibepe_papaya",
+      "ifoyin_toothbrush"
+    ]
+  },
+  {
+    "levelId": "Syllable Practice 3 — speaker3",
+    "category": "syllable_reinforcement",
+    "validSpeakers": [
+      "speaker3"
+    ],
+    "words": [
+      "ikoko_pot",
+      "jokoo_sit",
+      "ookan_one",
+      "maluu_cow",
+      "okuta_stone",
+      "redio_radio",
+      "olongbo_cat",
+      "alubosa_onion"
     ]
   },
   {
@@ -308,14 +349,14 @@
       "speaker1"
     ],
     "words": [
-      "awo_plate",
-      "ori_head",
-      "ikun_stomach",
-      "orun_neck",
       "ikoko_pot",
-      "ejika_shoulder",
+      "ori_head",
+      "awo_plate",
       "enu_mouth",
-      "owo_hand"
+      "owo_hand",
+      "eti_ear",
+      "oju_eye",
+      "imu_nose"
     ]
   },
   {
@@ -325,14 +366,14 @@
       "speaker1"
     ],
     "words": [
-      "owo_hand",
       "ikoko_pot",
-      "orun_neck",
-      "awo_plate",
-      "imu_nose",
+      "enu_mouth",
+      "ikun_stomach",
       "ejika_shoulder",
       "eti_ear",
-      "ori_head"
+      "ori_head",
+      "awo_plate",
+      "orun_neck"
     ]
   },
   {
@@ -342,14 +383,14 @@
       "speaker1"
     ],
     "words": [
-      "imu_nose",
-      "eti_ear",
-      "ori_head",
-      "ikoko_pot",
-      "awo_plate",
       "ikun_stomach",
       "owo_hand",
-      "oju_eye"
+      "orun_neck",
+      "ori_head",
+      "ejika_shoulder",
+      "eti_ear",
+      "oju_eye",
+      "ikoko_pot"
     ]
   },
   {
@@ -359,14 +400,14 @@
       "speaker2"
     ],
     "words": [
+      "aso_cloth",
+      "itan_thigh",
+      "seere_january",
+      "aja_dog",
+      "ra_crawl",
       "irin_walk",
-      "beelu_november",
-      "baluwe_bathroom",
-      "igbe_april",
-      "owawa_october",
-      "idodo_navel",
-      "sare_run",
-      "ewa_beans"
+      "jeun_eat",
+      "ebibi_may"
     ]
   },
   {
@@ -376,14 +417,14 @@
       "speaker2"
     ],
     "words": [
-      "ogun_august",
-      "oju_eye",
-      "ope_december",
+      "eye_bird",
+      "ete_lip",
+      "owawa_october",
+      "pepeye_duck",
+      "aja_dog",
+      "agemo_july",
       "ewe_leaf",
-      "ra_crawl",
-      "ewa_beans",
-      "igbo_forest",
-      "aja_dog"
+      "ra_crawl"
     ]
   },
   {
@@ -393,14 +434,14 @@
       "speaker2"
     ],
     "words": [
+      "oju_eye",
       "seere_january",
-      "irin_iron",
-      "igbe_april",
+      "ewa_beauty",
       "idodo_navel",
-      "igbo_forest",
       "owewe_september",
-      "okudu_june",
-      "agemo_july"
+      "pepeye_duck",
+      "dide_stand",
+      "igbe_april"
     ]
   },
   {
@@ -410,11 +451,14 @@
       "speaker3"
     ],
     "words": [
+      "ifoyin_toothbrush",
       "aso_cloth",
-      "ikoko_pot",
       "ibusun_bed",
-      "ese_leg",
-      "ose_soap"
+      "buredi_bread",
+      "ogede_banana",
+      "jokoo_sit",
+      "maluu_cow",
+      "ile_home"
     ]
   },
   {
@@ -424,11 +468,14 @@
       "speaker3"
     ],
     "words": [
-      "ese_leg",
-      "aso_cloth",
+      "osan_orange",
+      "ibepe_papaya",
+      "okuta_stone",
+      "maluu_cow",
+      "esinsin_fly",
+      "sibi_spoon",
       "ibusun_bed",
-      "ikoko_pot",
-      "ose_soap"
+      "kasu_cashew"
     ]
   },
   {
@@ -438,11 +485,14 @@
       "speaker3"
     ],
     "words": [
-      "ose_soap",
-      "ese_leg",
-      "ibusun_bed",
-      "aso_cloth",
-      "ikoko_pot"
+      "kasu_cashew",
+      "moto_automobile",
+      "pako_timber",
+      "jokoo_sit",
+      "adiye_chicken",
+      "ookan_one",
+      "digi_mirror",
+      "redio_radio"
     ]
   }
 ]
