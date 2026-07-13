@@ -13,12 +13,17 @@ html, body {
     background: var(--background-primary);
     color: var(--text-primary);
     font-family: var(--font-body);
-    /* Prevents the elastic "rubber-band" overscroll some mobile
-       browsers allow past the actual end of a short page - the most
-       common cause of being able to scroll into blank space below
-       real content. */
-    overscroll-behavior-y: none;
-    /* Belt-and-suspenders against any single element (see
+    /* overscroll-behavior-y was here to stop elastic "rubber-band"
+       scroll past the end of the page, but empirically (tested with a
+       real headless Chromium instance against the live site) setting
+       ANY non-default value of it on html/body - none, contain, even
+       just re-asserting a value - completely breaks real wheel/touch
+       scrolling on levels whose content overflows the viewport, while
+       leaving programmatic scrollTo() working, which is what made it
+       so easy to miss. Removed entirely: a working page that
+       occasionally bounces slightly past its own end is far better
+       than a page that cannot scroll its overflowing content at all.
+       Belt-and-suspenders against any single element (see
        #theme-selector below - the actual known culprit) forcing
        horizontal page overflow, which is what causes mobile browsers
        to render an unwanted zoomed-out-then-in initial view. */
