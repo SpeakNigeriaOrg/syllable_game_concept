@@ -70,14 +70,16 @@
                  style.css), not a permanently-reserved text line. -->
             <div id="toast" role="status" aria-live="polite"></div>
 
-            <!-- Hint toggle sits directly beside the answer slots it
-                 controls, making the connection between them obvious. -->
+            <!-- Hint toggle sits beside the answer slots, but the slots
+                 (not the row as a whole) are what's centered on the page -
+                 the 3-column grid below keeps the hint ancillary rather
+                 than shifting the slots off-center. -->
             <div id="answer-row">
                 <button id="hint-btn" class="icon-btn icon-btn-small" onclick="toggleToneHint()" aria-label="Toggle tone hint" title="Show tone hint">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                        <line x1="6" y1="17" x2="6" y2="9"/>
-                        <line x1="12" y1="17" x2="12" y2="5"/>
-                        <line x1="18" y1="17" x2="18" y2="13"/>
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M12 2a7 7 0 0 0-4 12.7c.6.4 1 1.1 1 1.8v.5h6v-.5c0-.7.4-1.4 1-1.8A7 7 0 0 0 12 2z" fill="currentColor"/>
+                        <rect x="9" y="18.5" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                        <rect x="9.7" y="20.6" width="4.6" height="1.4" rx="0.7" fill="currentColor"/>
                     </svg>
                 </button>
 
@@ -85,20 +87,25 @@
                      style.css) but only visible while #hint-btn is toggled
                      on (queue-slots.show-hint). -->
                 <div id="queue-slots" class="slots-container"></div>
+
+                <!-- Empty spacer, same grid column width as hint-btn's
+                     column, so the middle (slots) column is truly centered
+                     in the row rather than centered-minus-the-hint-button's-width. -->
+                <div aria-hidden="true"></div>
             </div>
 
             <div id="syllable-matrix" class="syllable-matrix">
 
                 <div class="tone-group tone-group-high" id="high-tones">
-                    <span class="tone-badge" title="High tone">˥</span>
+                    <span class="tone-badge" title="High tone">&#8599;</span>
                     <div class="bank-row"></div>
                 </div>
                 <div class="tone-group tone-group-mid" id="mid-tones">
-                    <span class="tone-badge" title="Mid tone">˧</span>
+                    <span class="tone-badge" title="Mid tone">&#8594;</span>
                     <div class="bank-row"></div>
                 </div>
                 <div class="tone-group tone-group-low" id="low-tones">
-                    <span class="tone-badge" title="Low tone">˩</span>
+                    <span class="tone-badge" title="Low tone">&#8600;</span>
                     <div class="bank-row"></div>
                 </div>
             </div>

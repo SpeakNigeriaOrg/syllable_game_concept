@@ -146,15 +146,28 @@ html, body {
 #skip-btn:hover { background: rgba(198, 56, 90, 0.08); }
 
 /* ==========================================
-   ANSWER ROW - hint toggle directly beside the slots it controls, so
-   the connection between the two is visually obvious.
+   ANSWER ROW - hint toggle sits beside the slots, but the slots (not
+   the row as a whole) must be the thing centered on the page. Classic
+   1fr/auto/1fr grid centering: the middle column sizes to the slots'
+   content and is centered independent of the side columns, so the
+   hint button (in the first column) reads as ancillary rather than
+   shifting the "true" center.
    ========================================== */
 #answer-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     margin: 10px 0;
+}
+
+#answer-row .slots-container {
+    grid-column: 2;
+}
+
+#hint-btn {
+    grid-column: 1;
+    justify-self: end; /* hugs the right edge of its column, i.e. just left of the slots */
 }
 
 /* ==========================================
@@ -232,14 +245,14 @@ html, body {
 
 .slot {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border: 2px dashed var(--border-subtle);
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: bold;
     color: var(--text-primary);
     transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
@@ -271,7 +284,12 @@ html, body {
     transition: opacity 0.15s;
 }
 
-.slot.tone-high::before { background: var(--accent-games); }
+/* Orange/gray/blue, not red/gray/blue - a colorblind-safe combination
+   (Okabe-Ito palette) that works across every common form of color
+   vision deficiency, unlike red-based schemes. Also stops "high tone"
+   from sharing a color with the (semantically unrelated) Skip button,
+   which used the same red before. */
+.slot.tone-high::before { background: var(--brand-accent-deep); }
 .slot.tone-mid::before  { background: var(--text-secondary); }
 .slot.tone-low::before  { background: var(--accent-videos); }
 
@@ -320,9 +338,13 @@ html, body {
    TONAL SYLLABLE MATRIX
    Each tone gets its own bordered panel with a colored accent bar,
    plus a small glyph badge overlapping the border (not a full text
-   label line) - color alone isn't reliable for colorblind users
-   (red/blue is a classic confusion pair), so the glyph stays as a
-   compact, non-color-dependent cue instead of dropping it entirely.
+   label line) - color alone isn't reliable for colorblind users, so
+   the glyph stays as a compact, non-color-dependent cue instead of
+   dropping it entirely. Colors are orange/gray/blue (not red-based) -
+   the Okabe-Ito colorblind-safe palette's two most distinguishable
+   hues across every common type of color vision deficiency (the
+   red-green pair that trips up most colorblind users is the one
+   combination this avoids entirely).
    ========================================== */
 .syllable-matrix {
     display: flex;
@@ -341,7 +363,7 @@ html, body {
     padding: 8px 10px 10px;
 }
 
-.tone-group-high { border-left-color: var(--accent-games); }
+.tone-group-high { border-left-color: var(--brand-accent-deep); }
 .tone-group-mid  { border-left-color: var(--text-secondary); }
 .tone-group-low  { border-left-color: var(--accent-videos); }
 
@@ -358,7 +380,7 @@ html, body {
     border: 1px solid currentColor;
 }
 
-.tone-group-high .tone-badge { color: var(--accent-games); }
+.tone-group-high .tone-badge { color: var(--brand-accent-deep); }
 .tone-group-mid  .tone-badge { color: var(--text-secondary); }
 .tone-group-low  .tone-badge { color: var(--accent-videos); }
 
@@ -386,6 +408,6 @@ html, body {
 
 /* Tone-specific button fills, harmonized with the brand accent
    palette (same three accents as the panel border/label above). */
-.btn-high { background-color: rgba(198, 56, 90, 0.10); border: 2px solid rgba(198, 56, 90, 0.35); color: var(--accent-games); }
+.btn-high { background-color: rgba(154, 106, 8, 0.10); border: 2px solid rgba(154, 106, 8, 0.35); color: var(--brand-accent-deep); }
 .btn-mid  { background-color: var(--background-secondary); border: 2px solid var(--border-subtle); color: var(--text-primary); }
 .btn-low  { background-color: rgba(46, 111, 158, 0.10); border: 2px solid rgba(46, 111, 158, 0.35); color: var(--accent-videos); }
