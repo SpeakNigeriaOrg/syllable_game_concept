@@ -1,0 +1,17 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Everything revalidates on every request (max-age=0) rather than
+# following website/_headers' longer /assets/* cache - this repo is
+# still under active, rapid iteration, and a stale cached CSS/JS file
+# silently masking a just-shipped fix is worse than the small
+# performance cost of always revalidating. Worth revisiting once
+# changes slow down.
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cache-Control: public, max-age=0, must-revalidate
