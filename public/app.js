@@ -23,6 +23,20 @@ let maxSlots = 0;
 let isTransitioning = false; 
 let currentPlayingAudio = null; 
 
+// Transient overlay message (see #toast in style.css) - replaces a
+// permanently-reserved text line with something that only takes up
+// space while it's actually showing something.
+let toastTimeout = null;
+function showToast(text, variant = 'info', duration = 1400) {
+    const el = document.getElementById('toast');
+    clearTimeout(toastTimeout);
+    el.textContent = text;
+    el.className = 'show ' + variant;
+    if (duration) {
+        toastTimeout = setTimeout(() => el.classList.remove('show'), duration);
+    }
+}
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -149,7 +163,7 @@ async function loadGame() {
         loadLevel(0);              
         
     } catch (error) {
-        document.getElementById('feedback-message').innerText = "Error loading game data.";
+        showToast("Error loading game data.", 'error', 0); // 0 = stays until reload, this isn't transient
         console.error("Failed to load game data:", error);
     }
 }
@@ -172,7 +186,7 @@ function initializeThemeSelector() {
 
 function loadLevel(levelIndex) {
     if (levelIndex >= gameData.length) {
-        document.getElementById('feedback-message').innerText = "You've completed all the themes!";
+        showToast("You've completed all the themes!", 'info', 0);
         return;
     }
     
@@ -198,9 +212,8 @@ function loadWord(wordIndex) {
     };
     imgElement.src = currentWord.imageUrl;
     
-    const feedbackEl = document.getElementById('feedback-message');
-    feedbackEl.innerText = "";
-    feedbackEl.classList.remove('correct', 'skipping');
+    clearTimeout(toastTimeout);
+    document.getElementById('toast').classList.remove('show');
     document.getElementById('queue-slots').classList.remove('correct', 'show-hint');
     document.getElementById('correct-badge').classList.remove('show');
     showingHint = false;
@@ -233,10 +246,20 @@ function playFullWordAudio() {
 function moveToNextWord() {
     const nextWordIndex = currentWordIndex + 1;
     if (nextWordIndex < currentLevel.words.length) {
-        loadWord(nextWordIndex); 
+        loadWord(nextWordIndex);
     } else {
-        document.getElementById('feedback-message').innerText = "Theme Complete! Loading next set...";
+        showToast("Theme Complete! Loading next set...", 'info', 1500);
         setTimeout(() => loadLevel(currentLevelIndex + 1), 1500);
+    }
+}
+
+// Mirrors moveToNextWord() - stays within the current level (no
+// wraparound into the previous theme), floors at the first word.
+function prevWord() {
+    if (isTransitioning) return;
+    const prevWordIndex = currentWordIndex - 1;
+    if (prevWordIndex >= 0) {
+        loadWord(prevWordIndex);
     }
 }
 
@@ -301,15 +324,11 @@ function skipWord() {
     if (isTransitioning) return; // Prevent spam-clicking
     
     isTransitioning = true;
-    
-    const feedbackEl = document.getElementById('feedback-message');
-    feedbackEl.innerText = "Skipping word...";
-    feedbackEl.classList.add('skipping');
+
+    showToast("Skipping word...", 'skipping', 800);
 
     // Wait a brief moment so they can read the message, then move on
-    setTimeout(() => {
-        moveToNextWord(); // loadWord() clears the 'skipping' class on the next word
-    }, 800);
+    setTimeout(moveToNextWord, 800);
 }
 
 function checkWinCondition() {
@@ -327,9 +346,7 @@ function checkWinCondition() {
             currentPlayingAudio.currentTime = 0;
         }
 
-        const feedbackEl = document.getElementById('feedback-message');
-        feedbackEl.innerText = "Correct! Great job!";
-        feedbackEl.classList.add('correct');
+        showToast("Correct! Great job!", 'correct', 2000);
         document.getElementById('queue-slots').classList.add('correct');
         document.getElementById('correct-badge').classList.add('show');
 

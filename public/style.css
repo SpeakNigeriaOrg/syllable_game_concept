@@ -98,8 +98,8 @@ html, body {
 }
 
 /* ==========================================
-   STAGE ROW - hint/skip icon buttons flank the image instead of a
-   separate text-button row below it, reclaiming a full line.
+   STAGE ROW - prev/next navigation flanks the image as a symmetric
+   pair, instead of a separate text-button row below it.
    ========================================== */
 #stage-row {
     display: flex;
@@ -123,7 +123,14 @@ html, body {
     transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
 
-#hint-btn:hover { background: var(--background-secondary); }
+.icon-btn:hover { background: var(--background-secondary); }
+
+/* Smaller variant for the hint toggle sitting beside the answer slots
+   (see #answer-row) - doesn't need to match the nav buttons' size. */
+.icon-btn-small {
+    width: 30px;
+    height: 30px;
+}
 
 /* Shown while the tone hint is toggled on (see app.js toggleToneHint) */
 #hint-btn.active {
@@ -137,6 +144,18 @@ html, body {
     color: var(--accent-games);
 }
 #skip-btn:hover { background: rgba(198, 56, 90, 0.08); }
+
+/* ==========================================
+   ANSWER ROW - hint toggle directly beside the slots it controls, so
+   the connection between the two is visually obvious.
+   ========================================== */
+#answer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
 
 /* ==========================================
    IMAGE PROMPT AREA
@@ -208,7 +227,6 @@ html, body {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin: 10px 0;
     min-height: 46px;
 }
 
@@ -261,22 +279,42 @@ html, body {
     opacity: 1;
 }
 
-#feedback-message {
-    font-size: var(--step-0);
+/* ==========================================
+   TOAST - transient feedback (correct/skip/error/level-complete),
+   floating over the page rather than reserving a permanent line.
+   Hidden (opacity 0, no pointer events) until app.js's showToast()
+   adds .show; auto-hidden again after its duration.
+   ========================================== */
+#toast {
+    position: fixed;
+    top: 64px;
+    left: 50%;
+    transform: translate(-50%, -6px);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: var(--step--1);
     font-weight: 700;
-    min-height: 24px;
-    margin-bottom: 6px;
     color: var(--text-secondary);
-    transition: color 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    max-width: 90vw;
+    text-align: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 500;
 }
 
-#feedback-message.skipping {
-    color: var(--accent-games);
+#toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
-#feedback-message.correct {
-    color: var(--accent-courses);
-}
+#toast.correct  { color: var(--accent-courses); border-color: rgba(47, 122, 77, 0.35); }
+#toast.skipping { color: var(--accent-games); border-color: rgba(198, 56, 90, 0.35); }
+#toast.error    { color: var(--accent-games); border-color: rgba(198, 56, 90, 0.35); }
+#toast.info     { color: var(--brand-indigo); border-color: var(--border-subtle); }
 
 /* ==========================================
    TONAL SYLLABLE MATRIX

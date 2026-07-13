@@ -29,14 +29,13 @@
 
         <main id="game-container">
 
-            <!-- Hint/skip are icon buttons flanking the image, not a
-                 separate text-button row - reclaims a whole line. -->
+            <!-- Back/forward navigation flanks the image (symmetric pair),
+                 not a separate text-button row. -->
             <div id="stage-row">
-                <button id="hint-btn" class="icon-btn" onclick="toggleToneHint()" aria-label="Toggle tone hint" title="Show tone hint">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                        <line x1="6" y1="17" x2="6" y2="9"/>
-                        <line x1="12" y1="17" x2="12" y2="5"/>
-                        <line x1="18" y1="17" x2="18" y2="13"/>
+                <button id="prev-btn" class="icon-btn" onclick="prevWord()" aria-label="Previous word" title="Previous word">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M18 5l-8 7 8 7V5z"/>
+                        <rect x="5.5" y="5" width="2.5" height="14" rx="1"/>
                     </svg>
                 </button>
 
@@ -55,6 +54,7 @@
                             <path d="M6.5 12.5l3.5 3.5 7.5-8" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
+
                 </div>
 
                 <button id="skip-btn" class="icon-btn" onclick="skipWord()" aria-label="Skip word" title="Skip word">
@@ -65,12 +65,27 @@
                 </button>
             </div>
 
-            <!-- Tone-hint dots for each slot are always in the DOM (see
-                 style.css) but only visible while #hint-btn is toggled on
-                 (queue-slots.show-hint) - no dedicated text line needed. -->
-            <div id="queue-slots" class="slots-container"></div>
+            <!-- Transient feedback (correct/skip/error/level-complete
+                 messages) as a floating overlay (fixed-positioned, see
+                 style.css), not a permanently-reserved text line. -->
+            <div id="toast" role="status" aria-live="polite"></div>
 
-            <div id="feedback-message"></div>
+            <!-- Hint toggle sits directly beside the answer slots it
+                 controls, making the connection between them obvious. -->
+            <div id="answer-row">
+                <button id="hint-btn" class="icon-btn icon-btn-small" onclick="toggleToneHint()" aria-label="Toggle tone hint" title="Show tone hint">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="6" y1="17" x2="6" y2="9"/>
+                        <line x1="12" y1="17" x2="12" y2="5"/>
+                        <line x1="18" y1="17" x2="18" y2="13"/>
+                    </svg>
+                </button>
+
+                <!-- Tone-hint dots for each slot are always in the DOM (see
+                     style.css) but only visible while #hint-btn is toggled
+                     on (queue-slots.show-hint). -->
+                <div id="queue-slots" class="slots-container"></div>
+            </div>
 
             <div id="syllable-matrix" class="syllable-matrix">
 
