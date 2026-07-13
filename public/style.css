@@ -18,6 +18,11 @@ html, body {
        common cause of being able to scroll into blank space below
        real content. */
     overscroll-behavior-y: none;
+    /* Belt-and-suspenders against any single element (see
+       #theme-selector below - the actual known culprit) forcing
+       horizontal page overflow, which is what causes mobile browsers
+       to render an unwanted zoomed-out-then-in initial view. */
+    overflow-x: hidden;
 }
 
 #app-wrapper {
@@ -66,6 +71,16 @@ html, body {
     border: 1px solid var(--border-subtle);
     background: var(--surface);
     color: var(--text-primary);
+    /* A native <select> sizes itself to its longest option's full text
+       by default - level names can be long ("Level 3: Body Parts
+       (Ẹ̀yà Ara) — speaker1"), which was forcing horizontal page
+       overflow on narrow phones (and, with it, an unwanted initial
+       zoomed view, and the fullscreen button pushed off-screen).
+       Capping the width and truncating instead fixes both. */
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #game-container {
@@ -89,9 +104,23 @@ html, body {
     z-index: 1000;
 }
 
-#start-overlay button {
-    padding: 20px 40px;
-    font-size: var(--step-1);
+#playlist-menu {
+    text-align: center;
+    padding: 24px;
+}
+
+#playlist-menu h2 {
+    font-family: var(--font-display);
+    color: var(--brand-indigo);
+    margin: 0 0 16px;
+}
+
+.playlist-btn {
+    display: block;
+    width: 240px;
+    margin: 0 auto 12px;
+    padding: 16px 24px;
+    font-size: var(--step-0);
     font-family: var(--font-display);
     font-weight: 600;
     background-color: var(--brand-indigo);
@@ -103,9 +132,20 @@ html, body {
     transition: transform 0.2s, background-color 0.2s;
 }
 
-#start-overlay button:hover {
+.playlist-btn:hover {
     background-color: var(--brand-indigo-deep);
     transform: scale(1.05);
+}
+
+/* Disabled until app.js confirms this category actually has levels for
+   the current data (see initializePlaylistMenu) - avoids offering a
+   playlist that would just show an empty game. */
+.playlist-btn:disabled {
+    background-color: var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 /* ==========================================

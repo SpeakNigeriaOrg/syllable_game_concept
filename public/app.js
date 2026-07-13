@@ -12,7 +12,8 @@ let CURRENT_SPEAKER = "speaker1";
 let CURRENT_IMAGE_STYLE = "cartoon"; 
 // ----------------------------
 
-let gameData = [];
+let gameData = [];    // every level, every category, unfiltered
+let activeLevels = []; // the currently-chosen playlist's levels (see selectPlaylist)
 let currentLevelIndex = 0;
 let currentWordIndex = 0;
 
@@ -65,13 +66,42 @@ function shuffleArray(array) {
     return array;
 }
 
-function startGame() {
-    // 1. Hide the overlay
-    document.getElementById('start-overlay').style.display = 'none';
-    
-    // 2. Now it is safe to load the first word
-    loadWord(0); 
+// Enables each playlist button once we know which categories actually
+// have levels for the current data - avoids offering a playlist that
+// would open into an empty game.
+function initializePlaylistMenu() {
+    const counts = {};
+    gameData.forEach((level) => { counts[level.category] = (counts[level.category] || 0) + 1; });
+    document.querySelectorAll('.playlist-btn').forEach((btn) => {
+        btn.disabled = !counts[btn.dataset.category];
+    });
 }
+
+// sessions.json tags every level with a real `category` field (see
+// publishToR2.mjs) - this filters to just that category and starts
+// play, rather than mixing all four playlists together in one
+// dropdown as before.
+function selectPlaylist(category) {
+    activeLevels = gameData.filter((level) => level.category === category);
+    if (activeLevels.length === 0) return; // shouldn't happen - button would be disabled
+    document.getElementById('start-overlay').style.display = 'none';
+    initializeThemeSelector();
+    loadLevel(0);
+}
+
+function showPlaylistMenu() {
+    document.getElementById('start-overlay').style.display = 'flex';
+}
+
+// Clicking the translucent backdrop itself (not a button inside the
+// menu) dismisses it WITHOUT changing the playlist - but only once a
+// game is already loaded, so the very first, mandatory choice can't be
+// skipped by an accidental backdrop tap.
+document.getElementById('start-overlay').addEventListener('click', (event) => {
+    if (event.target.id === 'start-overlay' && currentLevel) {
+        document.getElementById('start-overlay').style.display = 'none';
+    }
+});
 
 async function loadGame() {
     try {
@@ -174,47 +204,51 @@ async function loadGame() {
             
             return {
                 levelId: session.levelId,
+                category: session.category,
                 syllablePool: shuffleArray(sessionSyllablePool),
                 words: shuffleArray(sessionWords)
             };
         });
-        
-        initializeThemeSelector(); 
-        loadLevel(0);              
-        
+
+        initializePlaylistMenu();
+
     } catch (error) {
         showToast("Error loading game data.", 'error', 0); // 0 = stays until reload, this isn't transient
         console.error("Failed to load game data:", error);
     }
 }
 
+// Rebuilt each time selectPlaylist() runs, so it only ever lists levels
+// from the currently-chosen playlist, not all four mixed together.
 function initializeThemeSelector() {
     const selector = document.getElementById('theme-selector');
-    selector.innerHTML = ''; 
-    
-    gameData.forEach((theme, index) => {
+    selector.innerHTML = '';
+    selector.onchange = null;
+
+    activeLevels.forEach((level, index) => {
         const option = document.createElement('option');
-        option.value = index;            
-        option.innerText = theme.levelId; 
+        option.value = index;
+        option.innerText = level.levelId;
         selector.appendChild(option);
     });
 
-    selector.addEventListener('change', (event) => {
-        loadLevel(parseInt(event.target.value)); 
-    });
+    selector.onchange = (event) => {
+        loadLevel(parseInt(event.target.value));
+    };
 }
 
 function loadLevel(levelIndex) {
-    if (levelIndex >= gameData.length) {
-        showToast("You've completed all the themes!", 'info', 0);
+    if (levelIndex >= activeLevels.length) {
+        showToast("You've completed this playlist!", 'info', 0);
         return;
     }
-    
-    currentLevelIndex = levelIndex;
-    currentLevel = gameData[currentLevelIndex];
-    document.getElementById('theme-selector').value = currentLevelIndex;
 
-    renderBank(); 
+    currentLevelIndex = levelIndex;
+    currentLevel = activeLevels[currentLevelIndex];
+    document.getElementById('theme-selector').value = currentLevelIndex;
+    document.getElementById('theme-selector').title = currentLevel.levelId;
+
+    renderBank();
     loadWord(0);
 }
 
@@ -268,7 +302,7 @@ function moveToNextWord() {
     if (nextWordIndex < currentLevel.words.length) {
         loadWord(nextWordIndex);
     } else {
-        showToast("Theme Complete! Loading next set...", 'info', 1500);
+        showToast("Level Complete! Loading next set...", 'info', 1500);
         setTimeout(() => loadLevel(currentLevelIndex + 1), 1500);
     }
 }
