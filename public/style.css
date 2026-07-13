@@ -32,12 +32,19 @@ html, body {
 }
 
 #brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: var(--step--1);
     color: var(--brand-indigo);
     opacity: 0.75;
     letter-spacing: 0.02em;
+}
+
+#brand-mark img {
+    display: block;
 }
 
 #theme-selector {
@@ -91,13 +98,53 @@ html, body {
 }
 
 /* ==========================================
+   STAGE ROW - hint/skip icon buttons flank the image instead of a
+   separate text-button row below it, reclaiming a full line.
+   ========================================== */
+#stage-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.icon-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+#hint-btn:hover { background: var(--background-secondary); }
+
+/* Shown while the tone hint is toggled on (see app.js toggleToneHint) */
+#hint-btn.active {
+    background: var(--brand-accent);
+    border-color: var(--brand-accent-deep);
+    color: var(--brand-indigo-deep);
+}
+
+#skip-btn {
+    border-color: rgba(198, 56, 90, 0.35); /* --accent-games */
+    color: var(--accent-games);
+}
+#skip-btn:hover { background: rgba(198, 56, 90, 0.08); }
+
+/* ==========================================
    IMAGE PROMPT AREA
    ========================================== */
 .prompt-container {
     position: relative;
     width: 200px;
     height: 200px;
-    margin: 0 auto;
     border-radius: var(--radius);
     overflow: hidden;
     cursor: pointer;
@@ -166,6 +213,7 @@ html, body {
 }
 
 .slot {
+    position: relative;
     width: 40px;
     height: 40px;
     border: 2px dashed var(--border-subtle);
@@ -189,36 +237,29 @@ html, body {
     transform: scale(1.08);
 }
 
-/* ==========================================
-   ACTION ROW / FEEDBACK
-   ========================================== */
-#action-row {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 6px;
+/* Tone-hint dot above each slot - always rendered (see app.js's
+   renderQueue), only made visible while the hint is toggled on. This
+   replaces the old "Tone Hint: mid mid high" text line entirely. */
+.slot::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 5px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.15s;
 }
 
-#action-row button {
-    padding: 6px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: var(--step--1);
-    font-family: var(--font-body);
-    border: 1px solid var(--border-subtle);
-    background: var(--surface);
-    color: var(--text-secondary);
-    transition: background-color 0.15s;
-}
+.slot.tone-high::before { background: var(--accent-games); }
+.slot.tone-mid::before  { background: var(--text-secondary); }
+.slot.tone-low::before  { background: var(--accent-videos); }
 
-#hint-btn:hover { background: var(--background-secondary); }
-
-#skip-btn {
-    border-color: rgba(198, 56, 90, 0.35); /* --accent-games */
-    color: var(--accent-games);
+.slots-container.show-hint .slot::before {
+    opacity: 1;
 }
-#skip-btn:hover { background: rgba(198, 56, 90, 0.08); }
 
 #feedback-message {
     font-size: var(--step-0);
@@ -239,18 +280,21 @@ html, body {
 
 /* ==========================================
    TONAL SYLLABLE MATRIX
-   Each tone gets its own bordered panel with a colored accent bar and
-   an explicit label + pitch glyph, rather than relying on button
-   color alone to convey the high/mid/low split.
+   Each tone gets its own bordered panel with a colored accent bar,
+   plus a small glyph badge overlapping the border (not a full text
+   label line) - color alone isn't reliable for colorblind users
+   (red/blue is a classic confusion pair), so the glyph stays as a
+   compact, non-color-dependent cue instead of dropping it entirely.
    ========================================== */
 .syllable-matrix {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 12px;
+    gap: 14px; /* slightly more than before - the badges overlap the top edge */
+    margin-top: 14px;
 }
 
 .tone-group {
+    position: relative;
     text-align: left;
     background: var(--surface);
     border: 1px solid var(--border-subtle);
@@ -263,26 +307,22 @@ html, body {
 .tone-group-mid  { border-left-color: var(--text-secondary); }
 .tone-group-low  { border-left-color: var(--accent-videos); }
 
-.tone-label {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin: 0 0 6px 2px;
-    font-size: var(--step--1);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-secondary);
-}
-
-.tone-glyph {
+.tone-badge {
+    position: absolute;
+    top: -9px;
+    left: 10px;
     font-family: var(--font-mono);
-    font-size: 1.1em;
-    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid currentColor;
 }
 
-.tone-group-high .tone-label { color: var(--accent-games); }
-.tone-group-low  .tone-label { color: var(--accent-videos); }
+.tone-group-high .tone-badge { color: var(--accent-games); }
+.tone-group-mid  .tone-badge { color: var(--text-secondary); }
+.tone-group-low  .tone-badge { color: var(--accent-videos); }
 
 /* Pills sit close together (small gap) rather than the wide-spaced
    grid before, and are larger/chunkier for easier tapping. */

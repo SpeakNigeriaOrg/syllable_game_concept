@@ -201,8 +201,10 @@ function loadWord(wordIndex) {
     const feedbackEl = document.getElementById('feedback-message');
     feedbackEl.innerText = "";
     feedbackEl.classList.remove('correct', 'skipping');
-    document.getElementById('queue-slots').classList.remove('correct');
+    document.getElementById('queue-slots').classList.remove('correct', 'show-hint');
     document.getElementById('correct-badge').classList.remove('show');
+    showingHint = false;
+    document.getElementById('hint-btn').classList.remove('active');
 
     renderQueue();
     isTransitioning = false;
@@ -210,13 +212,15 @@ function loadWord(wordIndex) {
     // CHANGE: Removed playFullWordAudio() from here so it doesn't auto-play
 }
 
-// ADDITION: New function to show the tone hint
-function showToneHint() {
+// Toggle the per-slot tone-hint dots (see style.css's .slot::before) on
+// or off - visual instead of the old "Tone Hint: mid mid high" text
+// line, and reclaims that line entirely.
+let showingHint = false;
+function toggleToneHint() {
     if (!currentWord || !currentWord.targetTones || isTransitioning) return;
-    
-    // Joins the array ["mid", "mid", "high"] into "mid mid high"
-    const hintString = currentWord.targetTones.join(" ");
-    document.getElementById('feedback-message').innerText = `Tone Hint: ${hintString}`;
+    showingHint = !showingHint;
+    document.getElementById('queue-slots').classList.toggle('show-hint', showingHint);
+    document.getElementById('hint-btn').classList.toggle('active', showingHint);
 }
 
 function playFullWordAudio() {
@@ -262,8 +266,9 @@ function renderQueue() {
     
     for (let i = 0; i < maxSlots; i++) {
         const slot = document.createElement('div');
-        slot.className = 'slot';
-        slot.innerText = queue[i] || ''; 
+        const tone = currentWord?.targetTones?.[i] || 'mid';
+        slot.className = `slot tone-${tone}`;
+        slot.innerText = queue[i] || '';
         slotsDiv.appendChild(slot);
     }
 }
