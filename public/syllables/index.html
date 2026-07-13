@@ -7,8 +7,13 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="tokens.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- ?v= query strings bust browser/CDN caches on asset changes: Pages
+         serves HTML with max-age=0 but assets with a fixed 4-hour cache it
+         won't let _headers override (verified empirically - custom security
+         headers apply to assets, Cache-Control overrides don't). Bump the
+         version whenever the file meaningfully changes. -->
+    <link rel="stylesheet" href="tokens.css?v=2">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
     <div id="start-overlay">
@@ -135,6 +140,6 @@
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=2"></script>
 </body>
 </html>
