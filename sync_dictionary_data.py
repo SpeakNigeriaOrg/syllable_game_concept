@@ -5,7 +5,7 @@ This game no longer generates its own dictionary data - vocab.json,
 syllables.json, and sessions.json are built by the separate
 yoruba-student-dict repo (Kaikki cross-checking, syllable derivation, R2
 deployment-readiness). This just vendors its latest public/ output into
-this game's own public/ folder as a deliberately simple, manual hand-off:
+this game's public/phonics/ folder as a deliberately simple, manual hand-off:
 no live sync, no API, just re-run this after regenerating the dictionary
 repo's outputs and commit the refreshed copies here.
 
@@ -22,7 +22,7 @@ FILES = ["vocab.json", "syllables.json", "sessions.json"]
 
 def main():
     source_dir = Path(__file__).parent.parent / "yoruba-student-dict" / "public"
-    dest_dir = Path(__file__).parent / "public"
+    dest_dir = Path(__file__).parent / "public" / "phonics"
 
     if not source_dir.is_dir():
         sys.exit(f"Expected to find {source_dir} - is yoruba-student-dict "

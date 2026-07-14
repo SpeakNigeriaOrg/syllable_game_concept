@@ -1,10 +1,10 @@
 /* =========================================================
    Speak Nigeria — unified design tokens
    Vendored copy of website/assets/_tokens.css - this repo (the
-   games landing page + the syllable game itself) deploys separately
+   games landing page + the phonics game itself) deploys separately
    from `website`, so there's no build step to import it directly.
    Keep this in sync by hand if the source file changes (same
-   pattern as public/syllables/tokens.css, vendored from yorubadict).
+   pattern as public/phonics/tokens.css, vendored from yorubadict).
    ========================================================= */
 
 :root {
